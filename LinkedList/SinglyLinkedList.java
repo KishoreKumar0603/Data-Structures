@@ -8,7 +8,7 @@ class Node
         this.next = null;
     }
 }
-class LinkedList
+class Linked
 {
     Node head;
     void traverseList()
@@ -65,7 +65,7 @@ class LinkedList
     }
     void InsertAtPosition(int element, int position)
     {
-        if(position ==0)
+        if(position == 0)
         {
             InsertAtFirst(element);
         }
@@ -113,7 +113,9 @@ class LinkedList
 }
 public class SinglyLinkedList {
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        Linked ll = new Linked();
+
+        
         ll.Insert(10);
         ll.Insert(20);
         ll.Insert(30);
