@@ -18,7 +18,7 @@ class DoubleLinked{
     Node prev;
     
 }
-public class DoublyLinekedList {
+public class DoublyLinkedList {
     public static void main(String[] args) {
         Node list = new Node();
         System.out.println(list.val);
