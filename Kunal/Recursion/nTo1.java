@@ -16,7 +16,11 @@ public class nTo1 {
 //        int n = 1234;
 //        System.out.println("reverse the Number of "+n +" : "+reverseNumber(n));
 
+        // return the number of steps reduce the number to zero
+        //1.if even divide by 2
+        //2.if odd subract 1
         int num = 14;
+
         System.out.println(numberOfSteps(num));
     }
     public static int numberOfSteps(int num) {
