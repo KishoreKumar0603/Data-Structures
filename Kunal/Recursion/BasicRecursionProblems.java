@@ -1,6 +1,6 @@
 package Kunal.Recursion;
 
-public class nTo1 {
+public class BasicRecursionProblems {
     public static void main(String[] args) {
 //        fun(8);
 //        System.out.println();
@@ -19,9 +19,9 @@ public class nTo1 {
         // return the number of steps reduce the number to zero
         //1.if even divide by 2
         //2.if odd subract 1
-        int num = 14;
-
-        System.out.println(numberOfSteps(num));
+//        int num = 14;
+//
+//        System.out.println(numberOfSteps(num));
     }
     public static int numberOfSteps(int num) {
         return helper(num , 0);
