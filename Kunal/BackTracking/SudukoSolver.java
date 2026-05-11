@@ -1,12 +1,26 @@
 package Kunal.BackTracking;
 
 public class SudukoSolver {
-    public static void main() {
+    public static void main(String[] args) {
 
 
         int[][] board = {
-
+                {5, 3, 0, 0, 7, 0, 0, 0, 0},
+                {6, 0, 0, 1, 9, 5, 0, 0, 0},
+                {0, 9, 8, 0, 0, 0, 0, 6, 0},
+                {8, 0, 0, 0, 6, 0, 0, 0, 3},
+                {4, 0, 0, 8, 0, 3, 0, 0, 1},
+                {7, 0, 0, 0, 2, 0, 0, 0, 6},
+                {0, 6, 0, 0, 0, 0, 2, 8, 0},
+                {0, 0, 0, 4, 1, 9, 0, 0, 5},
+                {0, 0, 0, 0, 8, 0, 0, 7, 9}
         };
+
+        if(solve(board)) {
+            display(board);
+        } else {
+            System.out.println("Cant solve this....");
+        }
     }
 
     static boolean solve(int[][] board) {
@@ -14,21 +28,21 @@ public class SudukoSolver {
         int row = -1;
         int col = -1;
 
-        boolean foundEmpty = false;
+        boolean emptyLeft = true;
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
                 if(board[i][j] == 0) {
-                    foundEmpty = true;
                     row = i;
                     col = j;
+                    emptyLeft = false;
                     break;
                 }
             }
-            if(foundEmpty) {
+            if(emptyLeft == false) {
                 break;
             }
         }
-        if(!foundEmpty) {
+        if(emptyLeft) {
             return true;
         }
 
@@ -37,8 +51,6 @@ public class SudukoSolver {
                 board[row][col] = number;
 
                 if(solve(board)) {
-
-                    display(board);
                     return true;
                 } else {
                     board[row][col] = 0;
@@ -58,12 +70,11 @@ public class SudukoSolver {
 
     }
 
-
     static boolean isSafe(int[][] board, int row, int col, int num) {
 
         //check the row
         for(int i = 0; i < board.length; i++) {
-            if(board[i][col] == num) {
+            if(board[row][i] == num) {
                 return false;
             }
         }
@@ -74,13 +85,13 @@ public class SudukoSolver {
             }
         }
 
-        int sqrt = (int) Math.sqrt(board.length);
+        int sqrt = (int)(Math.sqrt(board.length));
         int rowStart = row - row % sqrt;
         int colStart = col - col % sqrt;
 
         for(int r = rowStart; r < rowStart + sqrt; r++) {
             for(int c = colStart; c < colStart + sqrt; c++) {
-                if(board[row][col] == num) {
+                if(board[r][c] == num) {
                     return false;
                 }
             }

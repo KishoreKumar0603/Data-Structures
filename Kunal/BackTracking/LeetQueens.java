@@ -3,6 +3,8 @@ package Kunal.BackTracking;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//https://leetcode.com/problems/n-queens/description/
 public class LeetQueens {
 
     public  static List<List<String>> end = new ArrayList<>();
