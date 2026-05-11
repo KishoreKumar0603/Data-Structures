@@ -11,14 +11,17 @@ public class Main {
         list.insertFirst(11);
         list.insertFirst(12);
         list.insertFirst(13);
-        list.insertFirst(14);
+    //   list.insertFirst(14);
+
 
         //Displaying the linkedlist elements
+
         list.traverse();
 
         //Insertion at Last
         list.insertLast(15);
         list.insertLast(16);
+
         list.insertLast(17);
         list.insertLast(18);
 
