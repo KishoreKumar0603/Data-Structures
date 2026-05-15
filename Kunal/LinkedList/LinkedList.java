@@ -1,121 +1,77 @@
 package Kunal.LinkedList;
 
+class Node {
+    int value;
+    Node next;
+
+    Node(int value) {
+        this.value = value;
+        this.next = null;
+    }
+
+    Node(int value, Node next) {
+        this.value = value;
+        this.next = next;
+    }
+}
 public class LinkedList {
-    private  class Node{
-        private int data;
-        private Node next;
-        public Node(int data){
-            this.data = data;
-            this.next = null;
 
-        }
-        public Node(int data, Node next){
-            this.data = data;
-            this.next = next;
-        }
-    }
-    private Node head,tail;
-    private int size;
-    LinkedList(){
-        this.size = 0;
+    Node head;
+    public LinkedList() {
+
     }
 
-
-    //Insertion
-    public void insertFirst(int data){
-        Node newNode = new Node(data);
-        newNode.next = head;
-        head = newNode;
-
-        if (tail == null){
-            tail = head;
+    public void insertAtFirst(int value) {
+        if(head == null) {
+            head = new Node(value);
+            return;
+        } else {
+            Node newNode = new Node(value);
+            newNode.next = head;
+            head = newNode;
         }
-
-        size += 1;
-    }
-    public void insertLast(int data){
-        Node newNode = new Node(data);
-        tail.next = newNode;
-        tail = tail.next;
-
-        if(head == null){
-            head = tail;
-        }
-
-        size += 1;
     }
 
-    public void insertAt(int data, int index){
-        if (index == 0){
-            insertFirst(data);
+    public void insertValues(int[] values)  {
+        for(int i : values) {
+            insertAtLast(i);
+        }
+    }
+    public void insertAtLast(int value) {
+        if(head == null) {
+            head = new Node(value);
             return;
         }
-        if (index == this.size){
-            insertLast(data);
-            return;
-        }
-
-        int currIndex = 0;
-        Node newNode =  new Node(data);
-        Node currNode = head;
-        while (currIndex < index - 1 && currNode!= null ){
-            currNode = currNode.next;
-            currIndex++;
-        }
-        newNode.next = currNode.next;
-        currNode.next = newNode;
-
-        this.size +=1;
-
-    }
-
-    //delete the node
-    public void deleteFirst(){
-        head = head.next;
-        if (head == null){
-            tail = null;
-        }
-
-        size--;
-    }
-
-
-
-    public void deleteLast(){
-        if (size <= 1){
-            deleteFirst();
-            return;
-        }
-
-        Node preLast = get(size - 2);
-        tail = preLast;
-        tail.next = null;
-        size--;
-    }
-
-    //get Index Node
-
-    public Node get(int index){
         Node temp = head;
-        for(int i = 0;i < index ;i++){
+        while(temp.next != null) {
             temp = temp.next;
         }
-        return temp;
+        Node newNode = new Node(value);
+        temp.next = newNode;
     }
 
-
-    //getting size of the Linkedlist
-    public int getSize(){
-        return this.size;
+    public void insertRecur(int value, int index) {
+        head = insertRecur(value,index, head);
     }
+    public Node insertRecur(int value,  int index, Node currentNode) {
 
-    //display all the elements in LinkedList
-    public void traverse(){
-        Node currentNode = head;
-        while(currentNode != null){
-            System.out.print(currentNode.data+" ---> ");
-            currentNode = currentNode.next;
+        if(index == 0) {
+            Node newNode = new Node(value, currentNode);
+            return newNode;
         }
-        System.out.println("Null");
+
+        currentNode.next = insertRecur(value, index--, currentNode.next);
+        return currentNode;
     }
+
+    public void traverseList() {
+        Node temp = head;
+
+        while(temp != null) {
+            System.out.print(temp.value +" -> ");
+            temp = temp.next;
+        }
+        System.out.println("END");
+    }
+
 }
